@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="7dp"
+    android:layout_marginTop="15dp"
+    android:layout_marginRight="7dp"
+    android:layout_marginBottom="15dp"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="10dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+
+        <ImageView
+            android:id="@+id/imgWeatherForecastIcon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/txtDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imgWeatherForecastIcon"
+            android:layout_centerHorizontal="true"
+            android:text="Day" />
+
+        <TextView
+            android:id="@+id/txtWeatherForecastDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtDay"
+            android:layout_centerHorizontal="true"
+            android:text="Description"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/txtWeatherTemperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtWeatherForecastDescription"
+            android:layout_centerHorizontal="true"
+            android:text="Celsius"
+            android:textSize="20sp" />
+
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

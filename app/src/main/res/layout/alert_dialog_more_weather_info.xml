@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/imgPopoutIcon"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Day"
+        android:id="@+id/txtPopoutDay"
+        android:textSize="18sp"
+        android:layout_below="@id/imgPopoutIcon"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/txtPopoutDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtPopoutDay"
+        android:layout_centerHorizontal="true"
+        android:text="Description"
+        android:textSize="17sp" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_below="@id/txtPopoutDescription"
+        tools:layout_editor_absoluteX="0dp">
+
+        <TextView
+            android:id="@+id/dayTempText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Day Temperature: "
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txtDayTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/dayTempText"
+            android:text="C"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/minTempText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dayTempText"
+            android:text="Min Temperature: "
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txtMinTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dayTempText"
+            android:layout_toEndOf="@id/minTempText"
+            android:text="C"
+            android:textSize="20sp" />
+
+
+        <TextView
+            android:id="@+id/maxTempText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/minTempText"
+            android:text="Max Temperature: "
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txtMaxTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/minTempText"
+            android:layout_toEndOf="@id/maxTempText"
+            android:text="C"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/nightTempText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/maxTempText"
+            android:text="Night Temperature: "
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txtNightTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/maxTempText"
+            android:layout_toEndOf="@id/nightTempText"
+            android:text="C"
+            android:textSize="20sp" />
+
+
+        <TextView
+            android:id="@+id/eveningTempText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nightTempText"
+            android:text="Evening Temperature: "
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txtEveningTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nightTempText"
+            android:layout_toEndOf="@id/eveningTempText"
+            android:text="C"
+            android:textSize="20sp" />
+
+
+        <TextView
+            android:id="@+id/morningTempText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/eveningTempText"
+            android:text="Morning Temperature: "
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txtMorningTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/eveningTempText"
+            android:layout_toEndOf="@id/morningTempText"
+            android:text="C"
+            android:textSize="20sp" />
+
+
+        <TextView
+            android:id="@+id/pressureText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/morningTempText"
+            android:text="Pressure: "
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txtPressure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/morningTempText"
+            android:layout_toEndOf="@id/pressureText"
+            android:text="1000"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/humidityText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pressureText"
+            android:text="Humidity: "
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txtHumidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pressureText"
+            android:layout_toEndOf="@id/humidityText"
+            android:text="40"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/uvIndexText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/humidityText"
+            android:text="UV Index: "
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txtUvIndex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/humidityText"
+            android:layout_toEndOf="@id/uvIndexText"
+            android:text="5"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/windSpeedText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/uvIndexText"
+            android:text="Wind Speed: "
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txtWindSpeed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/uvIndexText"
+            android:layout_toEndOf="@id/windSpeedText"
+            android:text="40"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
