@@ -20,6 +20,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class MainPresenter(private val IMainView: IMainView) : IMainPresenter {
 
+
+    /**
+     *Takes the latitude and longitude to make a Retrofit request
+     * to retrieve weather data
+     */
     override fun getWeatherLatLon(lat: String, lon: String) {
         GlobalScope.launch(IO) {
             val api = Retrofit.Builder()
@@ -49,6 +54,10 @@ class MainPresenter(private val IMainView: IMainView) : IMainPresenter {
         }
     }
 
+    /**
+     * Takes the city name to get it's latitude and longitude
+     * via a Retrofit call
+     */
     override fun getLatLonByCityName(cityName: String) {
         GlobalScope.launch(IO) {
             val api = Retrofit.Builder()
@@ -84,14 +93,24 @@ class MainPresenter(private val IMainView: IMainView) : IMainPresenter {
         }
     }
 
+    /**
+     * Enables GPS
+     */
     override fun enableGps(context: Context) {
         context.startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
     }
 
+    /**
+     * Uses the phone LOCATION SERVICES to get
+     * the latitude and longitude
+     */
     override fun getLatLon(context: Context) {
         val lat: String
         val lon: String
 
+        /**
+         * Re-checking the location permissions
+         */
         if (ActivityCompat.checkSelfPermission(
                 context,
                 android.Manifest.permission.ACCESS_FINE_LOCATION
@@ -115,26 +134,31 @@ class MainPresenter(private val IMainView: IMainView) : IMainPresenter {
             val locationPassive =
                 locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER)
 
-            if (locationGps != null) {
-                lat = locationGps.latitude.toString()
-                lon = locationGps.longitude.toString()
+            /**
+             * Checks for the available location data
+             */
+            when {
+                locationGps != null -> {
+                    lat = locationGps.latitude.toString()
+                    lon = locationGps.longitude.toString()
 
-                IMainView.getLatLonFromGps(lat, lon)
+                    IMainView.getLatLonFromGps(lat, lon)
+                }
+                locationNetwork != null -> {
+                    lat = locationNetwork.latitude.toString()
+                    lon = locationNetwork.longitude.toString()
 
-            } else if (locationNetwork != null) {
-                lat = locationNetwork.latitude.toString()
-                lon = locationNetwork.longitude.toString()
+                    IMainView.getLatLonFromGps(lat, lon)
+                }
+                locationPassive != null -> {
+                    lat = locationPassive.latitude.toString()
+                    lon = locationPassive.longitude.toString()
 
-                IMainView.getLatLonFromGps(lat, lon)
-
-            } else if (locationPassive != null) {
-                lat = locationPassive.latitude.toString()
-                lon = locationPassive.longitude.toString()
-
-                IMainView.getLatLonFromGps(lat, lon)
-
-            } else {
-                IMainView.onError("Can't get your location!")
+                    IMainView.getLatLonFromGps(lat, lon)
+                }
+                else -> {
+                    IMainView.onError("Can't get your location!")
+                }
             }
 
         }

@@ -40,6 +40,9 @@ class MainActivity : AppCompatActivity(), IMainView {
         mainPresenter = MainPresenter(this)
 
 
+        /**
+         * Handles the Search button click
+         */
         binding.btnSearch.setOnClickListener {
             if (binding.etCityname.text.toString().isEmpty()) {
                 Toast.makeText(this, "This City Is Already Shown", Toast.LENGTH_SHORT).show()
@@ -52,10 +55,13 @@ class MainActivity : AppCompatActivity(), IMainView {
             }
         }
 
+        /**
+         * Handles the user pressing the Enter key
+         */
         binding.etCityname.setOnKeyListener { v, keyCode, event ->
             if ((event.action == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
 
-                //hide keyboard
+
                 val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(binding.etCityname.windowToken, 0)
 
@@ -67,13 +73,16 @@ class MainActivity : AppCompatActivity(), IMainView {
                     mainPresenter.getLatLonByCityName(binding.etCityname.text.toString())
                 }
             }
-            false
+            true
         }
 
         requestLocationPermissions()
         mainPresenter.getLatLon(this)
     }
 
+    /**
+     * Sets the data for the views
+     */
     override fun getWeatherLatLon(weather: Weather, iconLink: String) {
         val current = weather.current
         val weatherItem = current.weather[0]
@@ -126,6 +135,9 @@ class MainActivity : AppCompatActivity(), IMainView {
         return super.onOptionsItemSelected(item)
     }
 
+    /**
+     * Requests Location Permissions from the user and checks if the GPS is enabled
+     */
     override fun requestLocationPermissions() {
         ActivityCompat.requestPermissions(
             this,

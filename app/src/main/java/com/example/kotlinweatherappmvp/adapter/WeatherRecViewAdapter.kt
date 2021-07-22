@@ -18,8 +18,7 @@ class WeatherRecViewAdapter(
     private val context: Context
 ) : RecyclerView.Adapter<WeatherRecViewAdapter.ViewHolder>() {
 
-    private val days =
-        arrayListOf("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
+
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val txtWeatherForecastDescription: TextView =
@@ -55,7 +54,13 @@ class WeatherRecViewAdapter(
         holder.txtDay.text = getDay(position)
     }
 
+    /**
+     * Finds the current day so it can display what forecasts
+     * are for what days!
+     */
     private fun getDay(position: Int): String {
+        val days = arrayListOf("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
+
         val calendar = Calendar.getInstance()
         val date = calendar.time
 
