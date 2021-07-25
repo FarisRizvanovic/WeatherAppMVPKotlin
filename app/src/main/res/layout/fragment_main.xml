@@ -1,14 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.MainFragment">
+    android:layout_margin="7dp"
+    tools:context=".view.MainActivity">
 
-    <!-- TODO: Update blank fragment layout -->
+    <Button
+        android:id="@+id/btnSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/search"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintTop_toTopOf="@+id/etCityName" />
+
+    <EditText
+        android:id="@+id/etCityName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="@string/city_name"
+        app:layout_constraintEnd_toStartOf="@+id/btnSearch"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintStart_toStartOf="parent"
+        android:autofillHints="false"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgWeatherIcon"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etCityName"
+        tools:srcCompat="@tools:sample/avatars" />
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/txtDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/description"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="@+id/imgWeatherIcon"
+        app:layout_constraintStart_toStartOf="@+id/imgWeatherIcon"
+        app:layout_constraintTop_toBottomOf="@+id/imgWeatherIcon" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/txtCityName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/city"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="@+id/txtDescription"
+        app:layout_constraintStart_toStartOf="@+id/txtDescription"
+        app:layout_constraintTop_toBottomOf="@+id/txtDescription" />
+
+    <TextView
+        android:id="@+id/txtTemperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/c"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="@+id/txtCityName"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toStartOf="@+id/txtCityName"
+        app:layout_constraintTop_toBottomOf="@+id/txtCityName" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recViewWeather"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTemperature" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

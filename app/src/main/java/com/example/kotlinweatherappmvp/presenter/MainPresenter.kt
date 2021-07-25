@@ -7,8 +7,10 @@ import android.content.pm.PackageManager
 import android.location.LocationManager
 import android.provider.Settings
 import androidx.core.app.ActivityCompat
+import com.example.kotlinweatherappmvp.fragment.MainFragment
 import com.example.kotlinweatherappmvp.service.WeatherApiService
 import com.example.kotlinweatherappmvp.view.IMainView
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.GlobalScope
@@ -18,14 +20,16 @@ import retrofit2.Retrofit
 import retrofit2.awaitResponse
 import retrofit2.converter.gson.GsonConverterFactory
 
-class MainPresenter(private val IMainView: IMainView) : IMainPresenter {
+class MainPresenter(mainFragment: MainFragment) : IMainPresenter {
 
+    private val iMainView = mainFragment as IMainView
 
     /**
      *Takes the latitude and longitude to make a Retrofit request
      * to retrieve weather data
      */
     override fun getWeatherLatLon(lat: String, lon: String) {
+
         GlobalScope.launch(IO) {
             val api = Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -43,12 +47,12 @@ class MainPresenter(private val IMainView: IMainView) : IMainPresenter {
                     val iconLink = weather.current.weather[0].icon
 
                     withContext(Main) {
-                        IMainView.getWeatherLatLon(weather, iconLink)
+                        iMainView.getWeatherLatLon(weather, iconLink)
                     }
                 }
             } catch (e: Exception) {
                 withContext(Main) {
-                    IMainView.onError("Error: ${e.message}")
+                    iMainView.onError("Error: ${e.message}")
                 }
             }
         }
@@ -71,7 +75,7 @@ class MainPresenter(private val IMainView: IMainView) : IMainPresenter {
 
                 withContext(Main) {
                     if (response.code() == 404) {
-                        IMainView.onError("Please Input A Valid City Name!")
+                        iMainView.onError("Please Input A Valid City Name!")
                     }
                 }
 
@@ -82,12 +86,12 @@ class MainPresenter(private val IMainView: IMainView) : IMainPresenter {
                     val lon = cords.lon.toString()
 
                     withContext(Main) {
-                        IMainView.getWeatherByCityName(lat, lon)
+                        iMainView.getWeatherByCityName(lat, lon)
                     }
                 }
             } catch (e: Exception) {
                 withContext(Main) {
-                    IMainView.onError("Error: ${e.message}")
+                    iMainView.onError("Error: ${e.message}")
                 }
             }
         }
@@ -142,25 +146,24 @@ class MainPresenter(private val IMainView: IMainView) : IMainPresenter {
                     lat = locationGps.latitude.toString()
                     lon = locationGps.longitude.toString()
 
-                    IMainView.getLatLonFromGps(lat, lon)
+                    iMainView.getLatLonFromGps(lat, lon)
                 }
                 locationNetwork != null -> {
                     lat = locationNetwork.latitude.toString()
                     lon = locationNetwork.longitude.toString()
 
-                    IMainView.getLatLonFromGps(lat, lon)
+                    iMainView.getLatLonFromGps(lat, lon)
                 }
                 locationPassive != null -> {
                     lat = locationPassive.latitude.toString()
                     lon = locationPassive.longitude.toString()
 
-                    IMainView.getLatLonFromGps(lat, lon)
+                    iMainView.getLatLonFromGps(lat, lon)
                 }
                 else -> {
-                    IMainView.onError("Can't get your location!")
+                    iMainView.onError("Can't get your location!")
                 }
             }
-
         }
     }
 
